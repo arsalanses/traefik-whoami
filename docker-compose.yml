@@ -3,37 +3,37 @@ version: '3.9'
 services:
   whoami:
     image: traefik/whoami
-    command:
-       - --port=2001
+    networks:
+      - web
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=web"
       - "traefik.http.routers.whoami.entrypoints=http,https"
       - "traefik.http.routers.whoami.rule=Host(`whoami.arsalanses.ir`)"
       - "traefik.http.routers.whoami.tls.certresolver=letsencrypt"
-      - "traefik.http.services.whoami.loadbalancer.server.port=2001"
+      - "traefik.http.services.whoami.loadbalancer.server.port=80"
   whoami-replica2:
     image: traefik/whoami
-    command:
-       - --port=2002
+    networks:
+      - web
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=web"
       - "traefik.http.routers.whoami.entrypoints=http,https"
       - "traefik.http.routers.whoami.rule=Host(`whoami.arsalanses.ir`)"
       - "traefik.http.routers.whoami.tls.certresolver=letsencrypt"
-      - "traefik.http.services.whoami.loadbalancer.server.port=2002"
+      - "traefik.http.services.whoami.loadbalancer.server.port=80"
   whoami-replica3:
     image: traefik/whoami
-    command:
-       - --port=2003
+    networks:
+      - web
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=web"
       - "traefik.http.routers.whoami.entrypoints=http,https"
       - "traefik.http.routers.whoami.rule=Host(`whoami.arsalanses.ir`)"
       - "traefik.http.routers.whoami.tls.certresolver=letsencrypt"
-      - "traefik.http.services.whoami.loadbalancer.server.port=2003"
+      - "traefik.http.services.whoami.loadbalancer.server.port=80"
 
 networks:
   web:
