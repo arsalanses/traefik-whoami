@@ -1,0 +1,8 @@
+- name: Play for initializing server
+  hosts: main
+  roles:
+    - essentials
+    - swap
+    - docker
+    - traefik
+    - reboot
